@@ -24,7 +24,7 @@ func (s *QuoteStore) AddQuote(q Quote) Quote {
 	s.Lock()
 	defer s.Unlock()
 	q.ID = s.nextID
-	q.CreatedAT = time.Now()
+	q.CreatedAt = time.Now()
 	s.nextID++
 	s.quotes = append(s.quotes, q)
 	return q
@@ -64,4 +64,13 @@ func (s *QuoteStore) DeleteByID(id int) bool {
 		}
 	}
 	return false
+}
+
+func (s *QuoteStore) GetQuoteByID(id int) (Quote, bool) {
+	for _, q := range s.quotes {
+		if q.ID == id {
+			return q, true
+		}
+	}
+	return Quote{}, false
 }
