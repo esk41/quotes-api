@@ -21,3 +21,9 @@ curl http://localhost:8080/quotes/random
 curl http://localhost:8080/quotes?author=Confucius
 curl -X DELETE http://localhost:8080/quotes/1
 ```
+## Особенности
+
+- Хранение цитат в памяти
+- Фильтрация по автору
+- Выдача случайной цитаты
+- Отслеживание времени добавления (`created_at`)

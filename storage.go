@@ -4,6 +4,7 @@ import (
 	"errors"
 	"math/rand"
 	"sync"
+	"time"
 )
 
 type QuoteStore struct {
@@ -23,6 +24,7 @@ func (s *QuoteStore) AddQuote(q Quote) Quote {
 	s.Lock()
 	defer s.Unlock()
 	q.ID = s.nextID
+	q.CreatedAT = time.Now()
 	s.nextID++
 	s.quotes = append(s.quotes, q)
 	return q
